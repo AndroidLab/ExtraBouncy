@@ -71,6 +71,7 @@ class BouncyNestedScrollView @JvmOverloads constructor(
     private var mTouchSlop = 0
     private var mMinimumVelocity = 0
     private var mMaximumVelocity = 0
+    private var rvUsing = false
     var isSmoothScrollingEnabled = true
     var overscrollAnimationSize = 0.5f
     var flingAnimationSize = 0.5f
@@ -484,7 +485,7 @@ class BouncyNestedScrollView @JvmOverloads constructor(
     }
 
     override fun onInterceptTouchEvent(ev: MotionEvent): Boolean {
-        return if (canScrolling) {
+        return if (canScrolling && !rvUsing) {
             val action = ev.action
 
             if (action == MotionEvent.ACTION_MOVE && mIsBeingDragged)
@@ -555,7 +556,7 @@ class BouncyNestedScrollView @JvmOverloads constructor(
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(ev: MotionEvent): Boolean {
-        return if (canScrolling) {
+        return if (canScrolling && !rvUsing) {
             initVelocityTrackerIfNotExists()
             val actionMasked = ev.actionMasked
 
@@ -1694,7 +1695,7 @@ class BouncyNestedScrollView @JvmOverloads constructor(
         //1 - Начат скролл, 0 - Скролл завершен, 2 - Отпущен
         override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
             super.onScrollStateChanged(recyclerView, newState)
-            canScrolling = newState != 1
+            rvUsing = newState != 0
         }
     }
 

@@ -3,11 +3,8 @@ package com.alab.extrabouncy
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
-import android.widget.ImageView
 import android.widget.Toast
-import com.alab.extra_bouncy.BouncyRecyclerView
 import com.alab.extra_bouncy.util.Bouncy
 import com.alab.extra_bouncy.util.OnOverScrollOffsetListener
 import com.alab.extrabouncy.databinding.RvHorizontalActivityBinding

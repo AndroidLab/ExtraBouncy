@@ -1695,7 +1695,7 @@ class BouncyNestedScrollView @JvmOverloads constructor(
         //1 - Начат скролл, 0 - Скролл завершен, 2 - Отпущен
         override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
             super.onScrollStateChanged(recyclerView, newState)
-            rvUsing = newState != 0
+            rvUsing = newState == 1
         }
     }
 
